@@ -1,0 +1,38 @@
+;; -*-lisp-*-
+
+(in-package :stumpwm)
+
+(require :swank)
+(swank-loader:init)
+
+;; Start a swank server so we can connect to StumpWM with SLIMEo
+(handler-case (swank:create-server :port 4004
+				   :style swank:*communication-style*
+				   :dont-close t)
+  (sb-bsd-sockets:address-in-use-error () :swank-already-started))
+
+(undefine-key *root-map* (kbd "c"))
+(undefine-key *root-map* (kbd "C-c"))
+
+(define-key *root-map* (kbd "a") "exec dmenu_run")
+(define-key *root-map* (kbd "t") "time")
+
+(define-key *top-map* (kbd "XF86MonBrightnessUp") "exec light -A 10")
+(define-key *top-map* (kbd "XF86MonBrightnessDown") "exec light -U 10")
+(define-key *top-map* (kbd "XF86ScreenSaver") "exec i3lock -c '000000'")
+(define-key *top-map* (kbd "XF86Sleep") "exec i3lock -c '000000' && sudo pm-suspend")
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") "exec amixer sset Master 5%+")
+(define-key *top-map* (kbd "XF86AudioLowerVolume") "exec amixer sset Master 5%-")
+(define-key *top-map* (kbd "XF86AudioMute") "exec amixer sset Master toggle")
+
+(add-group (current-screen) "Music" :background t)
+
+(setf *window-border-style* :thin)
+(setf *normal-border-width* 2)
+(setf *maxsize-border-width* 2)
+
+(set-focus-color "#608079")
+
+;; If redshift is not running, start it
+(when (zerop (length (run-shell-command "ps -u | grep redshift | grep -v grep" t)))
+  (run-shell-command "redshift -l '39.76185:-104.881105'"))
