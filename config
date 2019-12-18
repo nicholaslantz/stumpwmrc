@@ -13,6 +13,10 @@
 
 (require :alexandria)
 
+(defcommand battery ()
+    ()
+  (message "~a" (run-shell-command "acpi -b" t)))
+
 (undefine-key *root-map* (kbd "c"))
 (undefine-key *root-map* (kbd "C-c"))
 
@@ -23,6 +27,7 @@
 
 (define-key *root-map* (kbd "a") "exec dmenu_run")
 (define-key *root-map* (kbd "t") "time")
+(define-key *root-map* (kbd "b") "battery")
 
 (define-key *top-map* (kbd "XF86MonBrightnessUp") "exec light -A 10")
 (define-key *top-map* (kbd "XF86MonBrightnessDown") "exec light -U 10")
