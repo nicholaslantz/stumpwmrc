@@ -28,6 +28,8 @@
 (define-key *root-map* (kbd "d") "exec dmenu_run")
 (define-key *root-map* (kbd "t") "time")
 (define-key *root-map* (kbd "b") "battery")
+(define-key *root-map* (kbd "g") "grouplist")
+(define-key *root-map* (kbd "O") "gother")
 
 (define-key *top-map* (kbd "XF86MonBrightnessUp") "exec light -A 10")
 (define-key *top-map* (kbd "XF86MonBrightnessDown") "exec light -U 10")
@@ -37,7 +39,11 @@
 (define-key *top-map* (kbd "XF86AudioLowerVolume") "exec amixer sset Master 5%-")
 (define-key *top-map* (kbd "XF86AudioMute") "exec amixer sset Master toggle")
 
-(add-group (current-screen) "Music" :background t)
+(run-commands "grename default")
+(setf *default-group-name* "default")
+
+(add-group (current-screen) "music" :background nil)
+(run-shell-command "chromium https://music.amazon.com")
 
 (setf *window-border-style* :thin)
 (setf *normal-border-width* 2)
