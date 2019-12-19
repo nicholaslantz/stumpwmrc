@@ -25,7 +25,7 @@
 	  (undefine-key *root-map* (kbd (concat "F" (prin1-to-string x)))))
 	(iota 10 :start 1))
 
-(define-key *root-map* (kbd "a") "exec dmenu_run")
+(define-key *root-map* (kbd "d") "exec dmenu_run")
 (define-key *root-map* (kbd "t") "time")
 (define-key *root-map* (kbd "b") "battery")
 
