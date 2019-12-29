@@ -17,6 +17,10 @@
     ()
   (message "~a" (run-shell-command "acpi -b" t)))
 
+(defcommand time* ()
+    ()
+  (message "~a" (run-shell-command "date '+%a %d %b %Y %H:%M'" t)))
+
 (undefine-key *root-map* (kbd "c"))
 (undefine-key *root-map* (kbd "C-c"))
 
@@ -26,7 +30,7 @@
 	(iota 10 :start 1))
 
 (define-key *root-map* (kbd "d") "exec dmenu_run")
-(define-key *root-map* (kbd "t") "time")
+(define-key *root-map* (kbd "t") "time*")
 (define-key *root-map* (kbd "b") "battery")
 (define-key *root-map* (kbd "g") "grouplist")
 (define-key *root-map* (kbd "O") "gother")
