@@ -58,6 +58,12 @@
 
 (set-focus-color "#608079")
 
-;; If redshift is not running, start it
-(when (zerop (length (run-shell-command "ps -u | grep redshift | grep -v grep" t)))
+(defun runningp (process-name)
+  "Is an instance of process PROCESS-NAME running?
+
+Does not work with 'grep' program."
+  (let ((cmd (concat "ps -u | grep " process-name " | grep -v grep")))
+    (plusp (length (run-shell-command cmd t)))))
+
+(when (not (runningp "redshift"))
   (run-shell-command "redshift -l '39.76185:-104.881105'"))
