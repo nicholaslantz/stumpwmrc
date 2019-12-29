@@ -29,6 +29,9 @@
 	  (undefine-key *root-map* (kbd (concat "F" (prin1-to-string x)))))
 	(iota 10 :start 1))
 
+(defvar lock "i3lock -c '000000' ")
+(defvar sleep* "sudo pm-suspend ")
+
 (define-key *root-map* (kbd "d") "exec dmenu_run")
 (define-key *root-map* (kbd "t") "time*")
 (define-key *root-map* (kbd "b") "battery")
@@ -37,8 +40,8 @@
 
 (define-key *top-map* (kbd "XF86MonBrightnessUp") "exec light -A 10")
 (define-key *top-map* (kbd "XF86MonBrightnessDown") "exec light -U 10")
-(define-key *top-map* (kbd "XF86ScreenSaver") "exec i3lock -c '000000'")
-(define-key *top-map* (kbd "XF86Sleep") "exec i3lock -c '000000' && sudo pm-suspend")
+(define-key *top-map* (kbd "XF86ScreenSaver") (concat "exec " lock))
+(define-key *top-map* (kbd "XF86Sleep") (concat "exec " lock "&& " sleep*))
 (define-key *top-map* (kbd "XF86AudioRaiseVolume") "exec amixer sset Master 5%+")
 (define-key *top-map* (kbd "XF86AudioLowerVolume") "exec amixer sset Master 5%-")
 (define-key *top-map* (kbd "XF86AudioMute") "exec amixer sset Master toggle")
