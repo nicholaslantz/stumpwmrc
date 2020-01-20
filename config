@@ -49,9 +49,6 @@
 (run-commands "grename default")
 (setf *default-group-name* "default")
 
-(add-group (current-screen) "music" :background nil)
-(run-shell-command "chromium https://music.amazon.com")
-
 (setf *window-border-style* :thin)
 (setf *normal-border-width* 2)
 (setf *maxsize-border-width* 2)
