@@ -37,6 +37,7 @@
 (define-key *root-map* (kbd "b") "battery")
 (define-key *root-map* (kbd "g") "grouplist")
 (define-key *root-map* (kbd "O") "gother")
+(define-key *root-map* (kbd "C-o") "fother")
 
 (define-key *top-map* (kbd "XF86MonBrightnessUp") "exec light -A 10")
 (define-key *top-map* (kbd "XF86MonBrightnessDown") "exec light -U 10")
